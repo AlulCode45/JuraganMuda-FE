@@ -1,4 +1,5 @@
 "use client"
+import Navbar from '@/components/navbar'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
@@ -9,44 +10,10 @@ export default function ShowProduct() {
     const [page, setPage] = useState('deskripsi')
     return (
         <>
-
-            <header>
-                <div className="w-screen mb-1 py-4 bg-white">
-                    <div className="container mx-auto flex justify-between items-center">
-                        <div id="icon">
-                            <h1 className='text-2xl font-extrabold text-primary'>JuraganMuda</h1>
-                        </div>
-                        <div id="search">
-                            <form className='flex gap-2'>
-                                <input type="text" className='px-3 py-2 text-gray-500 border border-gray-300 rounded-md focus:outline-gray-300 w-[700px]' placeholder='Cari Produk' />
-                                <button className='bg-primary font-bold rounded-md py-1 px-6 text-white'>Cari</button>
-                            </form>
-                        </div>
-                        <div id="menu" className='flex gap-3 items-center'>
-                            <ShoppingCart className='text-gray-500' />
-                            <Mail className='text-gray-500' />
-                            <Bell className='text-gray-500' />
-                            <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                        </div>
-                    </div>
-                </div>
-                <div className='w-screen bg-white'>
-                    <div className='flex justify-between container mx-auto py-3 text-gray-600'>
-                        <div id="rekomendasi" className='flex gap-5'>
-                            <h1>Jasa Design</h1>
-                            <h1>Botol Bekas</h1>
-                        </div>
-                        <div id="location" className='flex gap-2'>
-                            <MapPin className='text-gray-500' />
-                            <h1>Ship to : </h1>
-                            <b>Sraturejo, Baureno, Jawa Timur</b>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <div className="container mx-auto mt-3 mb-10">
-                <div className="flex gap-5">
-                    <div className="w-3/12">
+            <Navbar />
+            <div className="container mx-auto mt-3 mb-10 px-5 md:px-0">
+                <div className="md:flex md:gap-5">
+                    <div className="md:w-3/12">
                         <img src="/assets/produk1.jpg" alt="" />
                         <div className="flex gap-3 mt-3 w-full">
                             <img src="/assets/produk1.jpg" alt="" className='w-[95px] h-[95px] rounded-lg border hover:scale-110 ease-in duration-150' />
@@ -54,7 +21,8 @@ export default function ShowProduct() {
                             <img src="/assets/produk3.jpg" alt="" className='w-[95px] h-[95px] rounded-lg border hover:scale-110 ease-in duration-150' />
                         </div>
                     </div>
-                    <div className="w-6/12 scrollY h-[calc(100vh-122px)] pb-10">
+                    <div className="md:w-6/12 md:scrollY md:h-[calc(100vh-122px)] md:pb-10 mt-5 md:mt-0">
+                        <hr className='md:hidden border border-gray-400 mb-3' />
                         <div className={page == 'deskripsi' ? '' : 'hidden'}>
                             <h1 className='text-2xl '>Lorem ipsum dolor sit amet consectetur adipisicin. </h1>
                             <span className='font-semibold mt-2 text-3xl'>Rp. 500.000</span>
@@ -106,19 +74,21 @@ export default function ShowProduct() {
                                     setPage("komentar")
                                 }}>Komentar</button>
                             </div>
-                            <div className="flex gap-2 container bg-white mx-auto py-3 mt-4 rounded-md ">
-                                <div className="w-1/12 my-auto">
-                                    <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                                </div>
-                                <div className="w-9/12 my-auto">
-                                    <h1 className='font-semibold'>AlulCode</h1>
-                                    <p className='text-gray-400'>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
-                                    </p>
+                            <div className="container bg-white mx-auto py-3 mt-4 rounded-md">
+                                <div className="flex gap-5 md:gap-2">
+                                    <div className="w-1/12 my-auto">
+                                        <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
+                                    </div>
+                                    <div className="w-9/12 my-auto">
+                                        <h1 className='font-semibold'>AlulCode</h1>
+                                        <p className='text-gray-400'>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
+                                        </p>
 
-                                    <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                        <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                    </div>
                                 </div>
-                                <div className="w-2/12 flex items-end">
+                                <div className="flex justify-end px-5">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
@@ -128,19 +98,22 @@ export default function ShowProduct() {
                                         <span className='ml-1'>5</span>
                                     </div>
                                 </div>
-                            </div><div className="flex gap-2 container bg-white mx-auto py-3 mt-4 rounded-md ">
-                                <div className="w-1/12 my-auto">
-                                    <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                                </div>
-                                <div className="w-9/12 my-auto">
-                                    <h1 className='font-semibold'>AlulCode</h1>
-                                    <p className='text-gray-400'>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
-                                    </p>
+                            </div>
+                            <div className="container bg-white mx-auto py-3 mt-4 rounded-md">
+                                <div className="flex gap-5 md:gap-2">
+                                    <div className="w-1/12 my-auto">
+                                        <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
+                                    </div>
+                                    <div className="w-9/12 my-auto">
+                                        <h1 className='font-semibold'>AlulCode</h1>
+                                        <p className='text-gray-400'>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
+                                        </p>
 
-                                    <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                        <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                    </div>
                                 </div>
-                                <div className="w-2/12 flex items-end">
+                                <div className="flex justify-end px-5">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
@@ -150,19 +123,22 @@ export default function ShowProduct() {
                                         <span className='ml-1'>5</span>
                                     </div>
                                 </div>
-                            </div><div className="flex gap-2 container bg-white mx-auto py-3 mt-4 rounded-md ">
-                                <div className="w-1/12 my-auto">
-                                    <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                                </div>
-                                <div className="w-9/12 my-auto">
-                                    <h1 className='font-semibold'>AlulCode</h1>
-                                    <p className='text-gray-400'>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
-                                    </p>
+                            </div>
+                            <div className="container bg-white mx-auto py-3 mt-4 rounded-md">
+                                <div className="flex gap-5 md:gap-2">
+                                    <div className="w-1/12 my-auto">
+                                        <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
+                                    </div>
+                                    <div className="w-9/12 my-auto">
+                                        <h1 className='font-semibold'>AlulCode</h1>
+                                        <p className='text-gray-400'>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
+                                        </p>
 
-                                    <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                        <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
+                                    </div>
                                 </div>
-                                <div className="w-2/12 flex items-end">
+                                <div className="flex justify-end px-5">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
@@ -172,41 +148,22 @@ export default function ShowProduct() {
                                         <span className='ml-1'>5</span>
                                     </div>
                                 </div>
-                            </div><div className="flex gap-2 container bg-white mx-auto py-3 mt-4 rounded-md ">
-                                <div className="w-1/12 my-auto">
-                                    <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                                </div>
-                                <div className="w-9/12 my-auto">
-                                    <h1 className='font-semibold'>AlulCode</h1>
-                                    <p className='text-gray-400'>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
-                                    </p>
+                            </div>
+                            <div className="container bg-white mx-auto py-3 mt-4 rounded-md">
+                                <div className="flex gap-5 md:gap-2">
+                                    <div className="w-1/12 my-auto">
+                                        <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
+                                    </div>
+                                    <div className="w-9/12 my-auto">
+                                        <h1 className='font-semibold'>AlulCode</h1>
+                                        <p className='text-gray-400'>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
+                                        </p>
 
-                                    <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
-                                </div>
-                                <div className="w-2/12 flex items-end">
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
-                                        <span className='ml-1'>5</span>
+                                        <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
                                     </div>
                                 </div>
-                            </div><div className="flex gap-2 container bg-white mx-auto py-3 mt-4 rounded-md ">
-                                <div className="w-1/12 my-auto">
-                                    <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                                </div>
-                                <div className="w-9/12 my-auto">
-                                    <h1 className='font-semibold'>AlulCode</h1>
-                                    <p className='text-gray-400'>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus sunt et, aliquam deserunt hic ipsa incidunt omnis dolores voluptatibus voluptates harum itaque dolore. Earum aspernatur inventore officia explicabo veniam quaerat?
-                                    </p>
-
-                                    <p className='text-gray-400 mt-3 text-sm'>16/06/2023</p>
-                                </div>
-                                <div className="w-2/12 flex items-end">
+                                <div className="flex justify-end px-5">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-yellow-400 text-sm' />
@@ -219,7 +176,7 @@ export default function ShowProduct() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-3/12 bg-white h-screen p-3">
+                    <div className="md:w-3/12 bg-white md:h-screen mt-4 md:mt-0 p-5 md:p-3">
                         <h1 className='mb-2 text-lg'>Set Quantity</h1>
                         <div className="flex w-full">
                             <button className="bg-primary font-extrabold text-xl py-3 text-white w-2/12 rounded-tl-xl rounded-bl-xl"

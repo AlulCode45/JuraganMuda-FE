@@ -1,4 +1,5 @@
 "use client"
+import Navbar from '@/components/navbar';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
@@ -16,44 +17,10 @@ export default function Dashboard() {
     }
     return (
         <>
-            <header>
-                <div className="w-screen mb-1 py-4 bg-white">
-                    <div className="container mx-auto flex justify-between items-center">
-                        <div id="icon">
-                            <h1 className='text-2xl font-extrabold text-primary'>JuraganMuda</h1>
-                        </div>
-                        <div id="search">
-                            <form className='flex gap-2'>
-                                <input type="text" className='px-3 py-2 text-gray-500 border border-gray-300 rounded-md focus:outline-gray-300 w-[700px]' placeholder='Cari Produk' />
-                                <button className='bg-primary font-bold rounded-md py-1 px-6 text-white'>Cari</button>
-                            </form>
-                        </div>
-                        <div id="menu" className='flex gap-3 items-center'>
-                            <ShoppingCart className='text-gray-500' />
-                            <Mail className='text-gray-500' />
-                            <Bell className='text-gray-500' />
-                            <img src="https://picsum.photos/200" alt="" className='rounded-full w-8 h-8 ml-3' />
-                        </div>
-                    </div>
-                </div>
-                <div className='w-screen bg-white'>
-                    <div className='flex justify-between container mx-auto py-3 text-gray-600'>
-                        <div id="rekomendasi" className='flex gap-5'>
-                            <h1>Jasa Design</h1>
-                            <h1>Botol Bekas</h1>
-                        </div>
-                        <div id="location" className='flex gap-2'>
-                            <MapPin className='text-gray-500' />
-                            <h1>Ship to : </h1>
-                            <b>Sraturejo, Baureno, Jawa Timur</b>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+            <Navbar />
             <main className='container mx-auto mt-3'>
                 <div className="flex">
-                    <div className="w-1/4 bg-white scrollY h-[calc(100vh-122px)] pb-10 p-4">
+                    <div className="hidden md:block w-1/4 bg-white scrollY h-[calc(100vh-122px)] pb-10 p-4">
                         <h1 className='text-xl font-bold'>Filters</h1>
 
                         <div className="flex items-center" onClick={categoryTogle}>
@@ -131,7 +98,7 @@ export default function Dashboard() {
                             <button className="hover:bg-blue-50 hover:border-primary hover:font-semibold hover:text-primary border px-3 py-2 rounded-md my-1 mx-1">Rp. 0 - Rp. 30.000</button>
                         </div>
                     </div>
-                    <div className="w-3/4 pl-5 scrollY h-[calc(100vh-122px)]">
+                    <div className="w-full px-5 md:px-0 md:w-3/4 pl-5 pb-11 md:pb-0 scrollY h-[calc(100vh-122px)]">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5 pb-5">
                             <div className="bg-white rounded-xl h-[340px] border hover:top-5 hover:z-10 hover:shadow-2xl">
                                 <div className="h-1/2 bg-gray-200 rounded-t-lg ">

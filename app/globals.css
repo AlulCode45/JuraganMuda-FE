@@ -4,7 +4,7 @@
 
 body {
     background-color: #F6F1F1;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     overflow-x: hidden;
 }
 
