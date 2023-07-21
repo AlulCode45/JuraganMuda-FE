@@ -6,7 +6,9 @@ body {
     background-color: #F6F1F1;
     /* overflow-y: hidden; */
     overflow-x: hidden;
+    font-family: 'Open Sauce One', sans-serif !important;
 }
+
 
 .scrollY {
     overflow-y: auto;
