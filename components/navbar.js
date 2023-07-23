@@ -2,12 +2,14 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Bell, Mail, MapPin, ShoppingCart } from 'react-feather'
 import { BiLogIn, BiLogOut, BiUser } from 'react-icons/bi'
 
 export default function Navbar() {
     const { data: session } = useSession()
+    const router = useRouter()
     const [showDropdownProfile, setShowDropdownProfile] = useState(false);
 
     const handleProfileClick = () => {
@@ -30,7 +32,7 @@ export default function Navbar() {
                         </form>
                     </div>
                     <div id="menu" className='flex gap-3 items-center'>
-                        <ShoppingCart className='text-gray-500' />
+                        <ShoppingCart className='text-gray-500 cursor-pointer' onClick={() => router.push('/user/keranjang')} />
                         <Mail className='text-gray-500' />
                         <Bell className='text-gray-500' />
                         <div className="relative">
@@ -49,30 +51,30 @@ export default function Navbar() {
                                     {
                                         (session?.user ? (
                                             <>
-                                                <p className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer">
+                                                <div className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer">
                                                     <div className="flex gap-1 items-center">
                                                         <BiUser />Profile
                                                     </div>
-                                                </p>
+                                                </div>
 
-                                                <p className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer"
+                                                <div className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer"
                                                     onClick={() => {
                                                         signOut()
                                                     }}>
                                                     <div className="flex gap-1 items-center">
                                                         <BiLogOut />Keluar
                                                     </div>
-                                                </p>
+                                                </div>
                                             </>
                                         ) : (
-                                            <p className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer"
+                                            <div className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer"
                                                 onClick={() => {
                                                     signIn()
                                                 }}>
                                                 <div className="flex gap-1 items-center">
                                                     <BiLogIn />Masuk
                                                 </div>
-                                            </p>
+                                            </div>
                                         ))
                                     }
                                 </div>

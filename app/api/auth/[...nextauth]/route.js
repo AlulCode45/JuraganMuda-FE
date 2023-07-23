@@ -33,6 +33,7 @@ export const authOptions = {
     session: {
         strategy: "jwt"
     },
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: '/auth/login'
     },
@@ -45,11 +46,9 @@ export const authOptions = {
             return session
         },
         async redirect({ url, baseUrl }) {
-            // Allows relative callback URLs
-            if (url.startsWith("/")) return `${baseUrl}${url}`
-            // Allows callback URLs on the same origin
-            else if (new URL(url).origin === baseUrl) return url
-            return baseUrl
+            return url.startsWith(baseUrl)
+                ? Promise.resolve(url)
+                : Promise.resolve(baseUrl)
         }
     },
 }

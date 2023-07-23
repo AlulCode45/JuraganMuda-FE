@@ -1,20 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 import Navbar from '@/components/navbar';
-import {BsBoxSeamFill, BsFillStarFill} from 'react-icons/bs';
-import {FaLocationDot} from 'react-icons/fa6';
-import React, {useEffect, useState} from 'react'
+import { BsBoxSeamFill, BsFillStarFill } from 'react-icons/bs';
+import { FaLocationDot } from 'react-icons/fa6';
+import React, { useEffect, useState } from 'react'
 import FilterComponents from '@/components/filter';
 import axios from 'axios';
-import {useSession} from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import toRupiah from '@develoka/angka-rupiah-js';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Dashboard() {
-    const {data: session, status} = useSession()
+    const { data: session, status } = useSession()
 
     const [product, setProduct] = useState([])
+
     useEffect(() => {
         const getProduct = async () => {
             return await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`, {
@@ -28,26 +29,26 @@ export default function Dashboard() {
             })
         }
         getProduct()
-    }, [session])
+    }, [])
 
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <main className='container mx-auto md:mx-10 mt-3'>
                 <div className="flex">
                     <div className="hidden md:block w-[214px] ">
-                        <FilterComponents/>
+                        <FilterComponents />
                     </div>
                     <div className="w-full md:w-[calc(100%-240px)] px-7 pb-10">
                         <div className="flex mb-5 gap-8 w-full justify-between md:justify-start">
                             <button
                                 className='flex pb-3 px-4 font-bold text-primary border-b-2 border-b-primary gap-2 items-center w-1/2 md:w-auto justify-center'>
-                                <BsBoxSeamFill/> Product
+                                <BsBoxSeamFill /> Product
                             </button>
                             <button
                                 className='flex px-4 text-gray-500 pb-3 font-semibold gap-2 items-center w-1/2 md:w-auto justify-center'>
-                                <BsBoxSeamFill/> Toko
+                                <BsBoxSeamFill /> Toko
                             </button>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
@@ -56,7 +57,7 @@ export default function Dashboard() {
                                     <div className="bg-white shadow-sm pb-2" key={i}>
                                         <Image
                                             src={data.foto_produk[0] ? data?.foto_produk?.[0] : `${process.env.NEXT_PUBLIC_URL}/assets/no-image.png`}
-                                            alt="" className='w-full h-[180px]' width={180} height={180}/>
+                                            alt="" className='w-full h-[180px]' width={180} height={180} />
                                         <div className="px-2 text-[13.5px] mt-2">
                                             <Link href={`/product/${data?.id}`}>
                                                 <p>{data?.nama_produk?.substr(0, 38)} ...</p></Link>
@@ -65,14 +66,15 @@ export default function Dashboard() {
                                                 formal: false
                                             })}</p>
                                             <p className='flex items-center text-gray-500 gap-2'>
-                                                <FaLocationDot/> Jakarta
+                                                <FaLocationDot /> Jakarta
                                             </p>
                                             <div className="flex mt-2 gap-2">
-                                                <span
-                                                    className='flex items-center gap-1 text-[12px] text-gray-500'><BsFillStarFill
-                                                    className='text-yellow-400'/>4.5</span>
+                                                <span className='flex items-center gap-1 text-[12px] text-gray-500'>
+                                                    <BsFillStarFill className='text-yellow-400' />{data?.rating}</span>
                                                 <span className='text-gray-500'>|</span>
-                                                <span className='text-gray-500 text-[12px]'>Terjual 2rb+</span>
+                                                <span className='text-gray-500 text-[12px]'>Terjual {
+                                                    data?.jumlah_terjual >= 1e3 ? (data?.jumlah_terjual / 1e3).toFixed(1).replace(".0", "") + "rb" : data?.jumlah_terjual.toString()
+                                                }</span>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +83,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-            </main>
+            </main >
         </>
     )
 }
