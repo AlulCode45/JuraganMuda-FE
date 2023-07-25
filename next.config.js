@@ -20,6 +20,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/file/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'images.tokopedia.net',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
 }

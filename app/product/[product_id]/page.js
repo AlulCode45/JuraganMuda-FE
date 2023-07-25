@@ -25,6 +25,8 @@ export default function ShowProduct({ params }) {
     const [product, setProduct] = useState()
     const [penjual, setPenjual] = useState([])
 
+    const [activeImg, setActiveImg] = useState(0)
+
     const handleTambahKeranjang = async () => {
         if (session?.user) {
             return await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/keranjang`, {
@@ -100,11 +102,13 @@ export default function ShowProduct({ params }) {
             <div className="md:mx-10 mt-3 border">
                 <div className="md:flex md:gap-10">
                     <div className="md:w-1/4">
-                        <Image src={product?.foto_produk[0] ? product?.foto_produk?.[0] : `${process.env.NEXT_PUBLIC_URL}/assets/no-image.png`} className='h-[300px] rounded-md' width={300} height={300} alt="" />
+                        <Image src={product?.foto_produk[activeImg] ? product?.foto_produk?.[activeImg] : `${process.env.NEXT_PUBLIC_URL}/assets/no-image.png`} className='h-[300px] rounded-md' width={300} height={300} alt="" />
                         <div className="flex gap-3 mt-3 w-full">
                             {
                                 product?.foto_produk ? product?.foto_produk?.map((data, i) => (
-                                    <Image src={data} width={50} height={50} alt="" className='w-[55px] h-[55px] rounded-lg hover:scale-110 ease-in duration-150 border-primary border-2' key={i} />
+                                    <Image src={data} width={50} height={50} alt="" className={`w-[55px] h-[55px] rounded-lg hover:scale-110 ease-in duration-150 ${activeImg === i ? 'border-primary border-2' : ''}`} key={i} onClick={() => {
+                                        setActiveImg(i)
+                                    }} />
                                 )) : ''
                             }
                         </div>
@@ -192,7 +196,7 @@ export default function ShowProduct({ params }) {
                         <div className="bg-white py-7 px-3 rounded-md">
                             <h1 className='mb-2 text-md'>Set Quantity</h1>
                             <div className="flex w-full">
-                                <button className="bg-primary font-extrabold text-xl py-2 text-white w-2/12 rounded-tl-xl rounded-bl-xl"
+                                <button className="bg-primary bg-opacity-75 font-extrabold text-xl py-2 text-white w-2/12 rounded-tl-xl rounded-bl-xl"
                                     onClick={() => {
                                         if (quantity > 1) {
                                             setQuantity(parseInt(quantity) - 1)
@@ -201,14 +205,14 @@ export default function ShowProduct({ params }) {
                                 <input type="number" placeholder='Jumlah Barang' className='w-8/12 px-3 focus:outline-none border border-gray-400 text-center' value={quantity} onChange={(e) => {
                                     setQuantity(e.target.value)
                                 }} min={1} />
-                                <button className="bg-primary font-extrabold text-xl py-2 text-white w-2/12 rounded-tr-xl rounded-br-xl"
+                                <button className="bg-primary bg-opacity-75 font-extrabold text-xl py-2 text-white w-2/12 rounded-tr-xl rounded-br-xl"
                                     onClick={() => {
                                         setQuantity(parseInt(quantity) + 1)
                                     }}>+</button>
                             </div>
                             <span className='text-xs'>Only <b className='text-primary'>10 Items</b> Left !</span>
-                            <h1 className='mt-3 text-sm'>Add Notes</h1>
-                            <textarea name="" id="" className='w-full border border-gray-400 mt-2 focus:outline-none p-3 rounded-md text-sm' rows={3} placeholder='Type Here...'></textarea>
+                            {/* <h1 className='mt-3 text-sm'>Add Notes</h1>
+                            <textarea name="" id="" className='w-full border border-gray-400 mt-2 focus:outline-none p-3 rounded-md text-sm' rows={3} placeholder='Type Here...'></textarea> */}
 
                             <div className="flex justify-between mt-3 items-center">
                                 <h1 className='text-base'>Sub Total</h1>

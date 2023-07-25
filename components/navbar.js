@@ -51,7 +51,9 @@ export default function Navbar() {
                                     {
                                         (session?.user ? (
                                             <>
-                                                <div className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer">
+                                                <div className="block px-4 py-2 text-gray-800 text-md hover:bg-gray-100 cursor-pointer" onClick={() => {
+                                                    router.push('/user')
+                                                }}>
                                                     <div className="flex gap-1 items-center">
                                                         <BiUser />Profile
                                                     </div>

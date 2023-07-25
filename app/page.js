@@ -70,7 +70,7 @@ export default function Dashboard() {
                                             </p>
                                             <div className="flex mt-2 gap-2">
                                                 <span className='flex items-center gap-1 text-[12px] text-gray-500'>
-                                                    <BsFillStarFill className='text-yellow-400' />{data?.rating}</span>
+                                                    <BsFillStarFill className='text-yellow-400' />{isNaN(data?.rating) ? '0' : data?.rating}</span>
                                                 <span className='text-gray-500'>|</span>
                                                 <span className='text-gray-500 text-[12px]'>Terjual {
                                                     data?.jumlah_terjual >= 1e3 ? (data?.jumlah_terjual / 1e3).toFixed(1).replace(".0", "") + "rb" : data?.jumlah_terjual.toString()
